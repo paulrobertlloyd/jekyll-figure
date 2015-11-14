@@ -12,6 +12,7 @@ A liquid tag for Jekyll that generates `<figure>` elements.
 ```yml
 gems:
   - jekyll-figure
+```
 
 ## Usage
 
