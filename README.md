@@ -6,7 +6,7 @@ A liquid tag for Jekyll that generates `<figure>` elements.
 
 ## Installation
 
-1. Add `gem 'jekyll-figure'` to your site’s Gemfile and run bundle
+1. Add `gem 'jekyll-figure'` to your site’s Gemfile and run `bundle`
 2. Add the following to your site’s `_config.yml`:
 
 ```yml
@@ -16,7 +16,7 @@ gems:
 
 ## Usage
 
-This plugin provides a liquid tag that enables you to generate a `<figure> element`. It takes optional `caption` and `class` parameters.
+This plugin provides a liquid tag that enables you to generate a `<figure>` element. It takes optional `caption` and `class` parameters.
 
 ```
 {% figure [caption:"Caption (markdown)"] [class:"class1 class2"] %}
@@ -57,7 +57,7 @@ If a figure contains an image (or multiple images), the surrounding `<p>` will b
 You can provide a caption. Any markdown will be rendered:
 
 ```
-{% figure caption:"*Markdown* content" %}
+{% figure caption:"*Markdown* caption" %}
 Content
 {% endfigure %}
 ```
@@ -65,7 +65,7 @@ Content
 ```html
 <figure>
   <p>Content</p>
-  <figcaption><em>Markdown</em> content</figcaption>
+  <figcaption><em>Markdown</em> caption</figcaption>
 </figure>
 ```
 
@@ -84,7 +84,7 @@ Content
 </figure>
 ```
 
-Finally, the `caption` parameters accepts liquid ouput markup:
+Finally, the `caption` parameter will accept liquid ouput markup:
 
 ```
 {% figure caption:"{{ page.title }}" %}
