@@ -3,6 +3,7 @@
 A liquid tag for Jekyll that generates `<figure>` elements.
 
 [![Gem Version](https://img.shields.io/gem/v/jekyll-figure.svg)](https://rubygems.org/gems/jekyll-figure)
+[![Build Status](https://img.shields.io/travis/paulrobertlloyd/jekyll-figure/master.svg)](https://travis-ci.org/paulrobertlloyd/jekyll-figure)
 
 ## Installation
 
