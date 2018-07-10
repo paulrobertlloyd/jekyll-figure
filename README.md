@@ -10,10 +10,12 @@ A liquid tag for Jekyll that generates `<figure>` elements.
 1. Add `gem 'jekyll-figure'` to your site’s Gemfile and run `bundle`
 2. Add the following to your site’s `_config.yml`:
 
-```yml
-gems:
+
+```yaml
+plugins:
   - jekyll-figure
 ```
+Note: If you are using a Jekyll version less than 3.5.0, use the `gems` key instead of `plugins`.
 
 ## Usage
 

@@ -1,7 +1,7 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'jekyll/figure/version'
+require 'jekyll-figure/version'
 
 Gem::Specification.new do |spec|
   spec.name        = "jekyll-figure"
@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.description = "A liquid tag for Jekyll that generates <figure> elements."
   spec.authors     = ["Paul Robert Lloyd"]
   spec.email       = "me+rubygems@paulrobertlloyd.com"
-  spec.files       = Dir.glob("lib/**/*.rb")
+  spec.files       = Dir.glob("lib/*.rb")
   spec.homepage    = "https://github.com/paulrobertlloyd/jekyll-figure"
   spec.license     = "MIT"
 
