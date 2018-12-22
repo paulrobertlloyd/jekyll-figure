@@ -43,21 +43,7 @@ Content
 </figure>
 ```
 
-If a figure contains an image (or multiple images), the surrounding `<p>` will be stripped:
-
-```
-{% figure %}
-![Image](/path/to/image.jpg)
-{% endfigure %}
-```
-
-```html
-<figure>
-  <img src="/path/to/image.jpg" alt="Image" />
-</figure>
-```
-
-You can provide a caption. Any markdown will be rendered:
+You can provide a caption, for which any markdown will be rendered:
 
 ```
 {% figure caption:"*Markdown* caption" %}
@@ -72,10 +58,10 @@ Content
 </figure>
 ```
 
-You can also provide a class name(es) for CSS styling:
+You can also provide a class name(s) for CSS styling:
 
 ```
-{% figure caption:"A caption" | class:"classname" %}
+{% figure caption:"A caption" class:"classname" %}
 Content
 {% endfigure %}
 ```
@@ -87,7 +73,7 @@ Content
 </figure>
 ```
 
-Finally, the `caption` parameter will accept liquid ouput markup:
+The `caption` parameter also accepts liquid markup:
 
 ```
 {% figure caption:"{{ page.title }}" %}
@@ -98,9 +84,31 @@ Content
 ```html
 <figure>
   <p>Content</p>
-  <figcaption>The title of my post</figcaption>
+  <figcaption>The title of my page</figcaption>
 </figure>
 ```
+
+## Configuration
+
+Any markdown provided within the `{% figure %}` block is rendered using Jekyll's Markdown parser, [Kramdown](https://kramdown.gettalong.org). However, this means images and other content will be wrapped within `<p>` tags, like so:
+
+```html
+<figure>
+  <p><img src="/path/to/image.jpg" alt="Image"></p>
+</figure>
+```
+
+To disable this behaviour, in your Jekyll configuration set the `paragraphs` value for this plugin to `false`:
+
+```yaml
+plugins:
+  - jekyll-figure
+
+jekyll-figure:
+  paragraphs: false
+```
+
+Note however that this will remove *all* paragraph tags, even those nested within other elements.
 
 ## Testing
 

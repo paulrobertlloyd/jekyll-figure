@@ -21,31 +21,38 @@ module Jekyll
           attributes[key] = value
         end
 
-        @caption = attributes['caption']
-        @class = attributes['class']
+        @settings = site.config["jekyll-figure"]
+        @caption = attributes["caption"]
+        @class = attributes["class"]
 
         # Caption: convert markdown and remove paragraphs
         unless @caption.nil?
-          figure_caption = @caption.gsub!(/\A"|"\Z/, '')
-          figure_caption = converter.convert(figure_caption).gsub(/<\/?p[^>]*>/, '').chomp
+          figure_caption = @caption.gsub!(/\A"|"\Z/, "")
+          figure_caption = converter.convert(figure_caption).gsub(/<\/?p[^>]*>/, "").chomp
           figure_caption = "  <figcaption>#{figure_caption}</figcaption>\n"
         end
 
         # Class name(s)
         unless @class.nil?
-          figure_class = @class.gsub!(/\A"|"\Z/, '')
+          figure_class = @class.gsub!(/\A"|"\Z/, "")
           figure_class = " class\=\"#{figure_class}\""
         end
 
-        # Content: convert markdown and remove paragraphs containing images
-        figure_main = converter.convert(super(context)).gsub(/^<p>\s*((<img[^<]+?)+)\s*<\/p>(.*)/, '\\1').gsub!(/[\n]+/, "\n  ");
+        # Content
+        if @settings && @settings["paragraphs"] == false
+          # Strip paragraphs
+          figure_main = converter.convert(super(context)).gsub(/<\/?p[^>]*>/, "")
+        else
+          # Don't strip paragraphs
+          figure_main = converter.convert(super(context))
+        end
 
         # Used to escape markdown parsing rendering
         markdown_escape = "\ "
 
         # Render <figure>
         figure_tag =  "<figure#{figure_class}>"
-        figure_tag += "#{figure_main}\n"
+        figure_tag += "#{figure_main}"
         figure_tag += "#{figure_caption}"
         figure_tag += "</figure>"
       end
@@ -54,4 +61,4 @@ module Jekyll
   end
 end
 
-Liquid::Template.register_tag('figure', Jekyll::Figure::FigureTag)
+Liquid::Template.register_tag("figure", Jekyll::Figure::FigureTag)
