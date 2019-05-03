@@ -88,6 +88,31 @@ Content
 </figure>
 ```
 
+You can add labels and reference to it.
+
+```
+{% figure caption:"This is some caption." label:myfigure %}
+Content
+{% endfigure %}
+...
+You can see in figure {% figref myfigure %}, ...
+```
+
+```html
+<figure id="myfigure">
+<p>Content</p>
+  <figcaption><em>Figure 1:</em> This is some caption.</figcaption>
+</figure>
+...
+<p>You can see in figure <a href="#myfigure">1</a></p>
+```
+The word 'Figure' in the figcaption is translated according to the `lang` you
+set in the yaml header of your post.  If your language is not supported simple
+set `figure` to the yaml header of your post to the value you want to use
+instead of 'Figure'.
+
+
+
 ## Configuration
 
 Any markdown provided within the `{% figure %}` block is rendered using Jekyll's Markdown parser, [Kramdown](https://kramdown.gettalong.org). However, this means images and other content will be wrapped within `<p>` tags, like so:
