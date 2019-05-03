@@ -39,6 +39,10 @@ describe(Jekyll) do
     expect(contents).to match /<figure>\n<p>Content<\/p>\n  <figcaption>Page data<\/figcaption>\n<\/figure>/
   end
 
+  it "creates a figure element with caption and label" do
+    expect(contents).to match /<figure id="example">\n<p>Content<\/p>\n  <figcaption><em>Figure 1:<\/em> A caption<\/figcaption>\n<\/figure>/
+  end
+
   context "with paragraphs stripped" do
     let(:config_overrides) do
       {

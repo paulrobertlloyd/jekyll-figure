@@ -1,7 +1,12 @@
+require 'utils'
+require 'jekyll-figure-ref'
+
 module Jekyll
   module Figure
 
     class FigureTag < Liquid::Block
+      include Utils
+
       def initialize(tag_name, markup, tokens)
         @markup = markup
         super
@@ -24,11 +29,14 @@ module Jekyll
         @settings = site.config["jekyll-figure"]
         @caption = attributes["caption"]
         @class = attributes["class"]
+        @label = attributes["label"]
+        @context = context
 
         # Caption: convert markdown and remove paragraphs
         unless @caption.nil?
           figure_caption = @caption.gsub!(/\A"|"\Z/, "")
           figure_caption = converter.convert(figure_caption).gsub(/<\/?p[^>]*>/, "").chomp
+          figure_caption = print_figure_counter(@label) + figure_caption unless @label.nil? || @label.empty?
           figure_caption = "  <figcaption>#{figure_caption}</figcaption>\n"
         end
 
@@ -38,6 +46,8 @@ module Jekyll
           figure_class = " class\=\"#{figure_class}\""
         end
 
+        figure_label = @label.nil? || @label.empty? ? "" : ' id="' + @label.gsub(/A"|"\Z/, "") + '"'
+        
         # Content
         if @settings && @settings["paragraphs"] == false
           # Strip paragraphs
@@ -51,7 +61,7 @@ module Jekyll
         markdown_escape = "\ "
 
         # Render <figure>
-        figure_tag =  "<figure#{figure_class}>"
+        figure_tag =  "<figure#{figure_class}#{figure_label}>"
         figure_tag += "#{figure_main}"
         figure_tag += "#{figure_caption}"
         figure_tag += "</figure>"
