@@ -2,26 +2,26 @@
 
 A liquid tag for Jekyll that generates `<figure>` elements.
 
-[![Gem Version](https://img.shields.io/gem/v/jekyll-figure.svg)](https://rubygems.org/gems/jekyll-figure)
-[![Build Status](https://img.shields.io/travis/paulrobertlloyd/jekyll-figure/master.svg)](https://travis-ci.org/paulrobertlloyd/jekyll-figure)
+[![Gem version](https://img.shields.io/gem/v/jekyll-figure.svg)](https://rubygems.org/gems/jekyll-figure)
+[![Build status](https://github.com/paulrobertlloyd/jekyll-figure/workflows/test/badge.svg)](https://github.com/paulrobertlloyd/jekyll-figure/actions)
 
 ## Installation
 
 1. Add `gem 'jekyll-figure'` to your site’s Gemfile and run `bundle`
 2. Add the following to your site’s `_config.yml`:
 
-
 ```yaml
 plugins:
   - jekyll-figure
 ```
+
 Note: If you are using a Jekyll version less than 3.5.0, use the `gems` key instead of `plugins`.
 
 ## Usage
 
 This plugin provides a liquid tag that enables you to generate a `<figure>` element. It takes optional `caption` and `class` parameters.
 
-```
+```liquid
 {% figure [caption:"Caption (markdown)"] [class:"class1 class2"] %}
 Figure content (markdown)
 {% endfigure %}
@@ -31,7 +31,7 @@ Figure content (markdown)
 
 In simplest usage:
 
-```
+```liquid
 {% figure %}
 Content
 {% endfigure %}
@@ -45,7 +45,7 @@ Content
 
 You can provide a caption, for which any markdown will be rendered:
 
-```
+```liquid
 {% figure caption:"*Markdown* caption" %}
 Content
 {% endfigure %}
@@ -60,7 +60,7 @@ Content
 
 You can also provide a class name(s) for CSS styling:
 
-```
+```liquid
 {% figure caption:"A caption" class:"classname" %}
 Content
 {% endfigure %}
@@ -75,7 +75,7 @@ Content
 
 The `caption` parameter also accepts liquid markup:
 
-```
+```liquid
 {% figure caption:"{{ page.title }}" %}
 Content
 {% endfigure %}
@@ -90,7 +90,7 @@ Content
 
 ## Configuration
 
-Any markdown provided within the `{% figure %}` block is rendered using Jekyll's Markdown parser, [Kramdown](https://kramdown.gettalong.org). However, this means images and other content will be wrapped within `<p>` tags, like so:
+Any markdown provided within the `{% figure %}` block is rendered using Jekyll’s Markdown parser, [Kramdown](https://kramdown.gettalong.org). However, this means images and other content will be wrapped within `<p>` tags, like so:
 
 ```html
 <figure>
@@ -112,8 +112,8 @@ Note however that this will remove *all* paragraph tags, even those nested withi
 
 ## Testing
 
-1. `script/bootstrap`
-2. `script/cibuild`
+1. `bundle install`
+2. `bundle exec rake spec`
 
 ## Contributing
 
